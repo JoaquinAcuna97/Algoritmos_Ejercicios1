@@ -238,8 +238,27 @@ int* intercalarVector(int* v1, int* v2, int l1, int l2){
 
 bool subconjuntoVector(int* v1, int* v2, int l1, int l2)
 {
-	// IMPLEMENTAR SOLUCION
-	return false;
+	// Si v1 es un conjunto vacío, siempre es un subconjunto de v2
+	if (l1 == 0) {
+		return true;
+	}
+
+	// Verificar si todos los elementos de v1 están presentes en v2
+	for (int i = 0; i < l1; ++i) {
+		bool encontrado = false;
+		for (int j = 0; j < l2; ++j) {
+			if (v1[i] == v2[j]) {
+				encontrado = true;
+				break;
+			}
+		}
+		if (!encontrado) {
+			return false; // Si un elemento de v1 no está presente en v2, retornar false
+		}
+	}
+
+	// Si todos los elementos de v1 están presentes en v2, retornar true
+	return true;
 }
 
 char** splitStr(char* str, char separador, int &largoRet)
